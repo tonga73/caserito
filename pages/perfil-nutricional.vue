@@ -16,7 +16,7 @@
   }
   ```
 -->
-    <h1 class="text-6xl opacity-50 py-10">PERFIL NUTRICIONAL</h1>
+    <h1 class="text-6xl md:text-xl opacity-50 py-10">PERFIL NUTRICIONAL</h1>
 
     <div class="mt-10 sm:mt-0">
       <div class="md:grid md:grid-cols-3 md:gap-6">
@@ -33,7 +33,7 @@
         <div class="mt-5 md:mt-0 md:col-span-2">
           <form action="#" method="POST">
             <div class="shadow overflow-hidden sm:rounded-md">
-              <div class="bg-orange-300 px-4 py-5 bg-white sm:p-6">
+              <div class="bg-orange-300 rounded-t-lg px-4 py-5 sm:p-6">
                 <div class="grid grid-cols-12 gap-6">
                   <div class="col-span-6 sm:col-span-3">
                     <label
@@ -137,7 +137,9 @@
         <div class="mt-5 md:mt-0 md:col-span-2">
           <form action="#" method="POST">
             <div class="shadow sm:rounded-md sm:overflow-hidden">
-              <div class="bg-orange-300 px-4 py-5 bg-white space-y-6 sm:p-6">
+              <div
+                class="bg-orange-300 rounded-t-lg px-4 py-5 space-y-6 sm:p-6"
+              >
                 <div class="grid grid-cols-12 gap-6">
                   <div class="grid gap-x-1 col-span-3 sm:col-span-3">
                     <label
@@ -256,7 +258,9 @@
         <div class="mt-5 md:mt-0 md:col-span-2">
           <form action="#" method="POST">
             <div class="shadow overflow-hidden sm:rounded-md">
-              <div class="px-4 py-5 bg-orange-300 space-y-6 sm:p-6">
+              <div
+                class="px-4 py-5 bg-orange-300 rounded-t-lg space-y-6 sm:p-6"
+              >
                 <fieldset>
                   <div>
                     <legend class="text-base font-medium text-gray-700">
@@ -326,7 +330,7 @@
                         />
                         <p class="text-xl uppercase">Grande</p>
                         <p class="text-gray-700">
-                          Si se tocan, la circunferencia es mediana.
+                          Si los dedos no se tocan, la circunferencia es grande.
                         </p>
                       </label>
                     </div>
@@ -341,14 +345,14 @@
                     <div class="flex items-start">
                       <div class="flex items-center h-5">
                         <input
-                          id="comments"
-                          name="comments"
+                          id="embarazo"
+                          name="embarazo"
                           type="checkbox"
                           class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         />
                       </div>
                       <div class="ml-3 text-sm">
-                        <label for="comments" class="font-medium text-gray-900"
+                        <label for="embarazo" class="font-medium text-gray-900"
                           >Embarazo</label
                         >
                       </div>
@@ -356,16 +360,14 @@
                     <div class="flex items-start">
                       <div class="flex items-center h-5">
                         <input
-                          id="candidates"
-                          name="candidates"
+                          id="lactancia"
+                          name="lactancia"
                           type="checkbox"
                           class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         />
                       </div>
                       <div class="ml-3 text-sm">
-                        <label
-                          for="candidates"
-                          class="font-medium text-gray-900"
+                        <label for="lactancia" class="font-medium text-gray-900"
                           >Lactancia</label
                         >
                       </div>
@@ -373,25 +375,173 @@
                     <div class="flex items-start">
                       <div class="flex items-center h-5">
                         <input
-                          id="offers"
-                          name="offers"
+                          id="menopaucia"
+                          name="menopaucia"
                           type="checkbox"
                           class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                         />
                       </div>
                       <div class="ml-3 text-sm">
-                        <label for="offers" class="font-medium text-gray-900"
+                        <label
+                          for="menopaucia"
+                          class="font-medium text-gray-900"
                           >Menopaucia o pre-menopaucia</label
                         >
                       </div>
                     </div>
                   </div>
                 </fieldset>
+
+                <fieldset>
+                  <legend class="text-base font-medium text-gray-700">
+                    Selecciona los alimentos que quisieras
+                    <strong>EXCLUIR</strong> del plan.
+                  </legend>
+                  <div class="mt-4 grid grid-cols-4">
+                    <div
+                      v-for="(item, index) in exclusionesList"
+                      :key="index"
+                      class="flex items-start"
+                    >
+                      <div class="flex items-center h-5">
+                        <input
+                          :id="item.name"
+                          :name="item.name"
+                          type="checkbox"
+                          class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        />
+                      </div>
+                      <div class="ml-3 text-sm">
+                        <label :for="item.name" class="text-xl text-gray-900"
+                          >{{ item.title }}
+
+                          <img :src="item.image" alt=""
+                        /></label>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <legend class="text-base font-medium text-gray-700">
+                    ¿Padeces alguna de estas enfermedades?
+                  </legend>
+                  <div class="mt-4 grid grid-cols-3 gap-5 place-items-start">
+                    <div
+                      v-for="(item, index) in enfermedadesList"
+                      :key="index"
+                      class="flex items-start"
+                    >
+                      <div class="flex items-start h-5">
+                        <input
+                          :id="index"
+                          :name="index"
+                          type="checkbox"
+                          class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
+                        />
+                      </div>
+                      <div class="ml-3 text-sm">
+                        <label :for="index" class="text-xl text-gray-900">
+                          <p class="flex -mt-2">{{ item.title }}</p>
+                          <small class="text-green-700">{{
+                            item.description
+                          }}</small>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </fieldset>
+
+                <fieldset>
+                  <div>
+                    <legend class="text-base font-medium text-gray-700">
+                      ¿Que tipo de plan le interesa?
+                    </legend>
+                  </div>
+                  <div
+                    class="mt-4 grid grid-cols-3 gap-x-5 place-items-start place-content-center"
+                  >
+                    <div class="flex items-center">
+                      <input
+                        id="tradicional"
+                        name="tradicional"
+                        type="radio"
+                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                      />
+                      <label
+                        for="tradicional"
+                        class="ml-3 block text-sm font-medium text-gray-900"
+                      >
+                        <img
+                          src="https://imagenes2.dietascormillot.com/front//desc-tradicional.jpg"
+                          alt=""
+                        />
+                        <p class="text-xl uppercase">Descenso Tradicional</p>
+                        <p class="text-gray-700">
+                          Esta indicado para las personas que desean bajar de
+                          peso en forma gradual con un plan de alimentación que
+                          sea flexible y por lo tanto fácil de mantener en el
+                          tiempo.
+                        </p>
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input
+                        id="rapido"
+                        name="rapido"
+                        type="radio"
+                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                      />
+                      <label
+                        for="rapido"
+                        class="ml-3 block text-sm font-medium text-gray-900"
+                      >
+                        <img
+                          src="https://imagenes2.dietascormillot.com/front//desc-rapido.jpg"
+                          alt=""
+                        />
+                        <p class="text-xl uppercase">Descenso Rapido</p>
+                        <p class="text-gray-700">
+                          Es para aquellas personas que buscan resultados a
+                          corto plazo y que estan dispuestas a realizar un plan
+                          de alimentación estricto.
+                        </p>
+                      </label>
+                    </div>
+                    <div class="flex items-center">
+                      <input
+                        id="mantenimiento"
+                        name="mantenimiento"
+                        type="radio"
+                        class="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300"
+                      />
+                      <label
+                        for="mantenimiento"
+                        class="ml-3 block text-sm font-medium text-gray-900"
+                      >
+                        <img
+                          src="https://imagenes2.dietascormillot.com/front//desc-mantenimiento.jpg"
+                          alt=""
+                        />
+                        <p class="text-xl uppercase">Plan de Mantenimiento</p>
+                        <p class="text-gray-700">
+                          Para personas que quieren mantener su peso actual
+                          conociendo la tendencia que tienen a aumentarlo o para
+                          saber como seguir una vez alcanzado el objetivo de
+                          peso, es decir como mantenerse después de haber
+                          bajado.
+                        </p>
+                      </label>
+                    </div>
+                  </div>
+                </fieldset>
               </div>
-              <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+              <div
+                class="bg-orange-500 px-4 py-3 bg-gray-50 text-right sm:px-6 rounded-b-lg"
+              >
                 <button
                   type="submit"
-                  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                  class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-700 hover:bg-red-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-700 uppercase bold"
                 >
                   Enviar
                 </button>
@@ -405,6 +555,75 @@
     <div class="mt-10 sm:mt-0"></div>
   </div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {
+      exclusionesList: [
+        {
+          name: 'vacuna',
+          title: 'Carne vacuna',
+          image:
+            'https://www.agritotal.com/files/image/18/18321/57ad865b7b5c5_907_510!.jpg?s=df3df03d272e689ffd4fd1eccb491196&d=1597362456',
+          description: '',
+        },
+        {
+          name: 'aves',
+          title: 'Carne de aves',
+          image:
+            'https://i1.wp.com/lopezdoriga.com/wp-content/uploads/2018/10/pollo-crudo.jpg?fit=1920%2C1080&ssl=1',
+          description: '',
+        },
+        {
+          name: 'pescados',
+          title: 'Pescados',
+          image:
+            'https://s1.eestatic.com/2019/11/14/ciencia/nutricion/alimentacion-nutricion_444467794_137944972_1706x960.jpg',
+          description: '',
+        },
+        {
+          name: 'cerdo',
+          title: 'Carne de cerdo',
+          image:
+            'https://www.agritotal.com/files/image/19/19365/57fe09bf1128d_907_510!.jpg?s=b5aba7785bf290238d1154aaf94bc1fa&d=1597105696',
+          description: '',
+        },
+      ],
+      enfermedadesList: [
+        {
+          title: 'Colesterol elevado',
+          description: '(Dieta BAJA en COLESTEROL)',
+        },
+        {
+          title: 'Triglicéridos',
+          description: '(Dieta BAJA en GRASAS Y AZÚCARES)',
+        },
+        {
+          title: 'Hipertensión',
+          description: '(Dieta BAJA en SAL)',
+        },
+        {
+          title: 'Diabetes (NO insulino dependiente) ',
+          description: '(Dieta BAJA en AZÚCAR)',
+        },
+        {
+          title: 'Osteoporosis',
+          description: '(Dieta BAJA en CALCIO)',
+        },
+        {
+          title: 'Hipotiroidismo',
+          description: '',
+        },
+        {
+          title: 'Constipación',
+          description: '(Dieta RICA en FIBRAS)',
+        },
+      ],
+    }
+  },
+}
+</script>
 
 <style>
 .form-container {
